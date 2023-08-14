@@ -1,0 +1,170 @@
+\NeedsTeXFormat{LaTeX2e}
+
+% PREAMBLE FILE - PUT ALL CUSTOM COMMANDS AND PACKAGE CALLS IN HERE.
+% Define document class, fontsize and pagesize.
+\ProvidesPackage{PackagesAndCommands}[8/14/2023 First iteration of my custom LaTeX in VSCode.]
+
+%------------------------------------------------------------------%
+% Packages
+%------------------------------------------------------------------%
+\usepackage[utf8]{inputenc}
+\usepackage[nottoc]{tocbibind}
+\usepackage[page,toc,titletoc,title]{appendix}
+\usepackage{tocloft}
+\usepackage[compact]{titlesec}
+\usepackage[export]{adjustbox}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{geometry}
+\usepackage{graphics}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{mcode}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage[margin=0.5cm]{caption}
+\usepackage{subcaption}
+\usepackage{setspace}
+\usepackage{enumitem}
+\usepackage{siunitx}
+\usepackage{pdfpages}
+\usepackage{paracol}
+\usepackage{chngpage}
+\usepackage{blindtext}
+\usepackage{enumitem}
+\usepackage{siunitx}
+\newcommand{\red}{\color{red}}
+\newcommand{\black}{\color{black}}
+\newcommand{\rw}{r_{\omega}}
+\usepackage{alltt}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage[hyphens]{url}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{pgfgantt}
+\usepackage[hidelinks]{hyperref}
+\usepackage{wrapfig}
+\usepackage{cleveref}
+\usepackage{fancyhdr} % Fancy page style
+\usepackage{fancyvrb}
+
+%------------------------------------------------------------------%
+% Page Layout and Spacing
+%------------------------------------------------------------------%
+
+\geometry{a4paper, margin = 2.5cm}
+
+% Change section spacing - use if desperate to get back under the page limit.
+\titlespacing\section{0pt}{2pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
+\titlespacing\subsection{0pt}{0pt plus 2pt minus 2pt}{0pt plus 2pt minus 2pt}
+\titlespacing\subsubsection{0pt}{2pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
+
+% Set spacing
+\AtBeginDocument{
+\setlength{\abovedisplayskip}{3pt}
+\setlength{\belowdisplayskip}{3pt}
+\setlength{\parindent}{0em}
+\setlength{\parskip}{0.5em}
+\setlength{\intextsep}{4pt plus 1.0pt minus 2.0pt}
+\setlength{\textfloatsep}{0pt plus 1.0pt minus 2.0pt}
+\setlength{\floatsep}{0pt plus 1.0pt minus 2.0pt}}
+
+% Caption configuration for figures and tables.
+\captionsetup[figure]{skip=0pt}
+\captionsetup[table]{skip=2pt}
+
+% Separation of labels in itemize/enumerate environment.
+\setlist{labelsep=0.75em}
+
+%------------------------------------------------------------------%
+
+%------------------------------------------------------------------%
+% Custom commands and definitions
+%------------------------------------------------------------------%
+
+
+% Define subsubsubsections
+\titleclass{\subsubsubsection}{straight}[\subsection]
+
+\newcounter{subsubsubsection}[subsubsection]
+\renewcommand\thesubsubsubsection{\thesubsubsection.\arabic{subsubsubsection}}
+\renewcommand\theparagraph{\thesubsubsubsection.\arabic{paragraph}} % optional; useful if paragraphs are to be numbered
+
+\titleformat{\subsubsubsection}
+  {\normalfont\normalsize\bfseries\itshape}{\thesubsubsubsection}{1em}{}
+\titlespacing*{\subsubsubsection}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+\makeatletter
+\def\toclevel@subsubsubsection{4}
+\def\l@subsubsubsection{\@dottedtocline{4}{7em}{4em}}
+
+\makeatother
+
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+
+% Degree symbol
+\newcommand{\degree}{^\circ}
+
+\definecolor{salmon}{cmyk}{0,0.10,0,0}
+\usepackage[square,super,numbers,sort&compress]{natbib}
+
+% Commands
+\newcommand{\comment}[1]{\textcolor{red}{\textbf{[#1]}}} 
+\newcommand{\names}[1]{\textcolor{magenta}{\textbf{#1}}} 
+\newcommand{\edit}[1]{\textcolor{blue}{\textbf{#1}}}
+\newcommand{\inzert}{\textcolor{red}{\textbf{[insert]}}} 
+\newcommand{\inzertcite}{\textcolor{red}{\textbf{[insert citation]}}} 
+
+% Custom table definitions that permit configuration of column widths.
+\usepackage{array}
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}l{#1}}
+
+% Custom command for ending a page and placing a page number.
+\def\fillandplacepagenumber{%
+ \par\pagestyle{empty}%
+ \vbox to 0pt{\vss}\vfill
+ \vbox to 0pt{\baselineskip0pt
+   \hbox to\linewidth{\hss}%
+   \baselineskip\footskip
+   \hbox to\linewidth{%
+     \hfil\thepage\hfil}\vss}}
+     
+% Put subsection name in the heading
+\renewcommand{\subsectionmark}[1]{%
+  \markright{\MakeUppercase{\thesubsection.\ #1}}}%
+  
+% Shortcuts for imperial units
+\newcommand{\kts}{\text{ kts}}
+\newcommand{\lb}{\text{ lb}}
+\newcommand{\ft}{\text{ ft}}
+\newcommand{\ftarea}{\text{ ft$^2$}}
+\newcommand{\ftinertia}{\text{ ft$^4$}}
+\newcommand{\fts}{\text{ ft/s}}
+\newcommand{\ftstwo}{\text{ ft/s$^2$}}
+\newcommand{\inch}{\text{ in}}
+\newcommand{\incharea}{\text{ in$^2$}}
+\newcommand{\inchinertia}{\text{ in$^4$}}
+\newcommand{\ppsi}{\text{ psi}}
+\newcommand{\ksi}{\text{ psi}}
+\newcommand{\densityimp}{\text{ slugs/ft$^3$}}
+\newcommand{\rad}{\text{ rad}}
+
+% Shortcuts for acronyms/commonly used symbols.
+\newcommand{\MoS}{\text{MoS}}
+\newcommand{\Pallow}{P_{\text{allowable}}}
+\newcommand{\sigmaallow}{\sigma_{\text{allowable}}}
+\newcommand{\tempratio}{T_{t4}/T_{t2}}
+
+% Define criteria environment.
+\newtheoremstyle{criteria}{}{}{\color{blue}}{}{\color{blue}\bfseries}{}{ }{}
+\theoremstyle{criteria}
+\newtheorem{criteria}{Relationship}
+
+
+
+

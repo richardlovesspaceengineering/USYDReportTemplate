@@ -1,0 +1,127 @@
+\documentclass[11pt,a4,table]{article}
+\usepackage{PackagesAndCommands}
+
+%------------------------------------------------------------------
+% Images
+%------------------------------------------------------------------
+ % please save all images into the image folder
+ \graphicspath{ {Images/} }
+ 
+%------------------------------------------------------------------
+% Begin Document
+%------------------------------------------------------------------
+ 
+\begin{document}
+ \pagenumbering{roman}
+
+%------------------------------------------------------------------
+% Title Page
+%------------------------------------------------------------------
+ 
+\begin{titlepage}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} 
+\begin{flushright}
+\includegraphics[width=0.25\textwidth]{Images/usydNew.png}\\[2cm]
+\end{flushright}
+
+\center 
+
+
+\textsc{\huge The University of Sydney}\\[0.75cm]
+\textsc{\Large School of Aerospace, Mechanical and Mechatronic Engineering}\\[1cm]
+
+\textsc{\Large UNITXXXX -- Unit Name}\\[1cm] 
+
+
+\HRule \\[0.4cm]
+{ \huge \bfseries Assignment Name}\\[0.4cm] 
+{\Large Assignment Description}\\[0.4cm]
+\HRule \\[1.25cm]
+ 
+
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+\emph{Author:}\\
+\textsc{490379994}\\
+\end{flushleft}
+\end{minipage}
+~
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large\emph{}\\
+\textsc{ }\\
+\textsc{ }\\
+\textsc{ }\\
+\textsc{ }\\
+\textsc{ }\\
+\end{flushright}
+\end{minipage}\\[1.5cm]
+
+
+{\large \today}\\[1.5cm]
+
+\vfill
+
+\end{titlepage}
+\newpage
+
+%------------------------------------------------------------------
+% Header Pages
+%------------------------------------------------------------------
+	
+% Executive Summary
+    \input{Tex-Files/0_ExecutiveSummary}
+	\cleardoublepage	
+
+% Table of Contents
+	\tableofcontents
+	\cleardoublepage
+		
+% List of Figures
+	\listoffigures
+	\vspace{2.54cm}
+	
+% List of Tables
+	\listoftables
+	\cleardoublepage
+
+% Acronyms
+	\input{Tex-Files/Acronyms}
+	\cleardoublepage
+    \newpage 
+    \pagenumbering{arabic}
+	\setcounter{page}{1}
+
+%------------------------------------------------------------------
+% Body
+%------------------------------------------------------------------
+
+%%% REMOVE NEWPAGES BEFORE SUBMITTING REPORT!
+\pagestyle{fancy}
+\rhead{}
+\fancyhead[L]{\slshape\nouppercase\rightmark}
+\setcounter{table}{0}
+\input{Tex-Files/1_Introduction}
+\input{Tex-Files/2_Methodology}
+\input{Tex-Files/3_ResultsDiscussion}
+\input{Tex-Files/4_Conclusion}
+\newpage
+%------------------------------------------------------------------
+% Bibliography
+%------------------------------------------------------------------
+\clearpage
+\bibliographystyle{unsrtnat}
+\bibliography{bibliography}
+
+%------------------------------------------------------------------
+% Appendix
+%------------------------------------------------------------------
+\cleardoublepage
+\fancyhead{}
+\section*{Appendix}
+\addcontentsline{toc}{section}{Appendix}
+\appendix
+
+\input{Tex-Files/Appendix}
+
+\end{document}
